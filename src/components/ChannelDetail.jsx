@@ -18,12 +18,30 @@ const ChannelDetail = () => {
       setChannelDetail(data?.items[0])
     );
 
-    fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then((data) =>
-      setVideos(data?.items[0])
+    fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then(
+      (data) => setVideos(data?.items)
     );
   }, [id]);
 
-  return <div>{id}</div>;
+  return (
+    <Box minHeight={"95vh"}>
+      <Box>
+        <div
+          style={{
+            background:
+              "linear-gradient(84deg, rgba(2,0,36,1) 0%, rgba(146,85,147,1) 100%, rgba(0,212,255,1) 100%)",
+            zIndex: 10,
+            height: "300px",
+          }}
+        />
+        <ChannelCard channelDetail={channelDetail} marginTop="-110px" />
+      </Box>
+      <Box  display={"flex"} p={"2"}>
+        <Box sx={{ mr: { sm: "100px" } }} />
+        <Videos videos={videos} />
+      </Box>
+    </Box>
+  );
 };
 
 export default ChannelDetail;
