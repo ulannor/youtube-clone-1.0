@@ -17,7 +17,7 @@ const ChannelCard = ({ channelDetail }) => (
       margin: "auto",
     }}
   >
-    <Link to={`/channel/${channelDetail?.id?.channelID}`}>
+    <Link to={`/channel/${channelDetail?.id?.channelId}`}>
       <CardContent
         sx={{
           display: "flex",
@@ -44,11 +44,13 @@ const ChannelCard = ({ channelDetail }) => (
           {channelDetail?.snippet?.title}{" "}
           <CheckCircle sx={{ fontSize: 14, color: "gray", ml: "5px" }} />
         </Typography>
+
         {channelDetail?.statistics?.subscriberCount && (
           <Typography>
             {parseInt(
               channelDetail?.statistics?.subscriberCount
-            ).toLocaleString()} Subscribers
+            ).toLocaleString()}{" "}
+            Subscribers
           </Typography>
         )}
       </CardContent>
