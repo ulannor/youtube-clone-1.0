@@ -25,17 +25,17 @@ const VideoDetail = () => {
     statistics: { viewCount, likeCount },
   } = videoDetail;
 
-  // const youtubeConfig = {
-  //   playerVars: {
-  //     autoplay: 0, // Automatically start playing the video
-  //     loop: 0, // Loop the video
-  //     iv_load_policy: 3,
-  //     modestbranding: 1, // Minimize YouTube branding
-  //     showinfo: 0, // Remove video information
-  //     disablekb: 0,
-  //     cc_load_policy: 1,
-  //   },
-  // };
+  const youtubeConfig = {
+    playerVars: {
+      autoplay: 0, // Automatically start playing the video
+      loop: 0, // Loop the video
+      iv_load_policy: 3,
+      modestbranding: 1, // Minimize YouTube branding
+      showinfo: 0, // Remove video information
+      disablekb: 0,
+      cc_load_policy: 1,
+    },
+  };
 
   return (
     <Box minHeight={"95vh"}>
@@ -48,7 +48,7 @@ const VideoDetail = () => {
               controls
               width="100%"
               height="100%"
-              // config={{ youtube: youtubeConfig }}
+              config={{ youtube: youtubeConfig }}
             />
             <Typography color={"#fff"} variant="h5" fontWeight="bold" p={2}>
               {title}
