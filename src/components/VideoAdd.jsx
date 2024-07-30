@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { formatDistanceToNowStrict } from "date-fns";
 import {
   Box,
   Typography,
@@ -11,12 +12,34 @@ import {
   CardMedia,
   Paper,
   ListItem,
+  Link,
+  Container,
 } from "@mui/material";
+import { CheckCircle } from "@mui/icons-material";
+
 import { fetchFromAPI } from "../utils/fetchFromAPI"; // Ensure you have a utility to fetch data from the API
+import { PlaylistSelect } from "./";
+
 
 const AddVideos = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [videoData, setVideoData] = useState(null);
+
+  const publishedDate = videoData
+    ? new Date(videoData.snippet.publishedAt)
+    : null;
+  const relativeTime = videoData
+    ? formatDistanceToNowStrict(publishedDate, { addSuffix: true })
+    : null;
+
+  const formatViewCount = (viewCount) => {
+    if (viewCount >= 1000000) {
+      return (viewCount / 1000000).toFixed(1) + " million";
+    } else if (viewCount >= 1000) {
+      return (viewCount / 1000).toFixed(0) + " thousand";
+    }
+    return viewCount.toLocaleString();
+  };
 
   const handleFetchVideoData = async () => {
     if (videoUrl) {
@@ -43,107 +66,74 @@ const AddVideos = () => {
   };
 
   return (
-    <Box
-      width="100vw"
-      height="90vh"
-      display="flex"
-      justifyContent={"center"}
-      alignContent={"center"}
-      overflow={"auto"}
-    >
-      <Stack direction="column" spacing={2} alignItems="center">
-        <Box width={"500px"}>
-          <Stack direction="column" spacing={2} alignItems="center">
-            <Typography
-              variant="h1"
-              fontWeight="bold"
-              mb={2}
-              sx={{ color: "white", fontSize: "2rem" }}
-              gutterBottom={true}
-            >
-              Add videos to your playlist
-            </Typography>
-            <TextField
-              fullWidth
-              id="fullWidth"
-              sx={{
-                backgroundColor: "white",
-                borderColor: "black",
-                borderRadius: 1,
-              }}
-              placeholder="Add YouTube video link here"
-              value={videoUrl}
-              onChange={(e) => setVideoUrl(e.target.value)}
-              size="small"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleFetchVideoData}
-            >
-              Fetch Video Data
-            </Button>
-          </Stack>
-        </Box>
-        <Box width={"40%"}>
-          {videoData && (
-            <Card sx={{ width: "100%" }}>
+    <Container>
+      <Box overflow={"auto"} pt={4} pb={4} pr={1} pl={1} height={"90vh"}>
+        <Stack direction="column" spacing={2} alignItems={"center"}>
+          <Typography
+            variant="h1"
+            fontWeight="bold"
+            fontSize={"2rem"}
+            color={"white"}
+          >
+            Add videos to a playlist
+          </Typography>
+          <TextField
+            id="pasteUrl"
+            label="YouTube URL"
+            placeholder="Add YouTube video link here"
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            fullWidth
+            sx={{ maxWidth: "450px" }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleFetchVideoData}
+          >
+            Fetch Video
+          </Button>
+          <Card sx={{ maxWidth: "1200px" }}>
+            {videoData && (
               <CardContent>
-                <Typography variant="h5" mb={1}>
-                  {videoData.snippet.title}
-                </Typography>
-                <img
-                  src={videoData.snippet.thumbnails.maxres.url}
-                  alt={videoData.snippet.title}
-                  style={{ width: "50%", borderRadius: "8px" }}
-                />
-                <Typography variant="body2">
-                  {videoData.snippet.description}
-                </Typography>
+                <Stack direction={{ sx: "column", md: "row" }} spacing={2}>
+                  <Box>
+                    <img
+                      src={videoData.snippet.thumbnails.maxres.url}
+                      alt={videoData.snippet.title}
+                      style={{ maxWidth: "500px", borderRadius: "8px" }}
+                    />
+                  </Box>
+                  <Box pt={0.5}>
+                    <Typography variant="h3" mb={1} fontSize={"1.3rem"}>
+                      <Link href="#" underline="none" color={"inherit"}>
+                        {videoData.snippet.title}
+                      </Link>
+                    </Typography>
 
-                <Typography variant="subtitle2" color="textSecondary">
-                  Published at:{" "}
-                  {new Date(videoData.snippet.publishedAt).toLocaleDateString()}
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Channel:{" "}
-                  <span style={{ color: "primary.main" }}>
-                    {videoData.snippet.channelTitle}
-                  </span>
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Views: {videoData.statistics.viewCount}
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Likes: {videoData.statistics.likeCount}
-                </Typography>
-                <Paper
-                  sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    flexDirection: "row",
-                    listStyle: "none",
-                    p: 1,
-                  }}
-                  component="ul"
-                >
-                  {videoData.snippet.tags &&
-                    videoData.snippet.tags.map((tag) => (
-                      <ListItem
-                        key={tag}
-                        sx={{ width: "auto", mb: 1 }}
-                        disablePadding
-                      >
-                        <Chip onDelete={handleDelete} label={tag} />
-                      </ListItem>
-                    ))}
-                </Paper>
+                    <Typography variant="subtitle1" mb={0.5}>
+                      <Link href="#" underline="none" color={"inherit"}>
+                        {videoData.snippet.channelTitle}
+                      </Link>{" "}
+                      <CheckCircle sx={{ fontSize: "12px", color: "gray" }} />
+                    </Typography>
+
+                    <Typography variant="body2" color="textSecondary">
+                      {relativeTime} <span style={{ margin: "0 5px" }}>•</span>{" "}
+                      {formatViewCount(videoData.statistics.likeCount)} likes{" "}
+                      <span style={{ margin: "0 5px" }}>•</span>{" "}
+                      {formatViewCount(videoData.statistics.viewCount)} views
+                    </Typography>
+                    <PlaylistSelect></PlaylistSelect>
+                  </Box>
+                  
+                </Stack>
               </CardContent>
-            </Card>
-          )}
-        </Box>
-      </Stack>
-    </Box>
+            )}
+          </Card>
+        </Stack>
+      </Box>
+    </Container>
   );
 };
 

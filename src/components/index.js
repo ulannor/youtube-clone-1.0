@@ -9,3 +9,4 @@ export { default as Videos } from "./Videos";
 export { default as VideoCard } from "./VideoCard";
 export { default as ChannelCard } from "./ChannelCard";
 export { default as VideoAdd } from "./VideoAdd";
+export { default as PlaylistSelect } from "./PlaylistSelect";

@@ -27,12 +27,9 @@ const VideoDetail = () => {
 
   const youtubeConfig = {
     playerVars: {
-      autoplay: 0, // Automatically start playing the video
+      autoplay: 1, // Automatically start playing the video
       loop: 0, // Loop the video
       iv_load_policy: 3,
-      modestbranding: 1, // Minimize YouTube branding
-      showinfo: 0, // Remove video information
-      disablekb: 0,
       cc_load_policy: 1,
     },
   };
@@ -43,7 +40,7 @@ const VideoDetail = () => {
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
             <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${id}?rel=0`}
+              url={`https://www.youtube.com/watch?v=${id}&rel=0`}
               className="react-player"
               controls
               width="100%"
