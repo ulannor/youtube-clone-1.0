@@ -7,11 +7,9 @@ import {
   ChannelDetail,
   VideoDetail,
   SearchFeed,
-  VideoAdd,
-  SupabaseTest,
   LoginTest,
   VideoAddTest,
-  MyPlaylists,
+  Playlists,
 } from "./components";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -39,15 +37,7 @@ const App = () => (
             <Route path="/search/:searchTerm" element={<SearchFeed />} />
 
             <Route
-              path="/add"
-              element={
-                <ProtectedRoute>
-                  <VideoAdd />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/addtest"
+              path="/addvideo"
               element={
                 <ProtectedRoute>
                   <VideoAddTest />
@@ -58,11 +48,10 @@ const App = () => (
               path="/myplaylists"
               element={
                 <ProtectedRoute>
-                  <MyPlaylists />
+                  <Playlists />
                 </ProtectedRoute>
               }
             />
-            <Route path="/supabasetest" element={<SupabaseTest />} />
             <Route path="/logintest" element={<LoginTest />} />
           </Routes>
         </Box>

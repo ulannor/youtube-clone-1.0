@@ -13,29 +13,23 @@ const Sidebar = ({ selectedCategory, setSelectedCategory }) => (
     {categories.map((category) => (
       <button
         className="category-btn"
-        onClick={()=> setSelectedCategory(category.name)}
+        onClick={() => setSelectedCategory(category.name)}
         style={{
-          background: category.name === selectedCategory && "#FC1503",
+          background: category.name === selectedCategory && "#7373731f",
           color: "white",
+          flexDirection: "column", // Stacks content vertically
         }}
         key={category.name}
       >
         <span
           style={{
-            color: category.name === selectedCategory ? "white" : "red",
-            marginRight: "15px",
+            color: "white",
+            marginBottom: 10,
           }}
         >
           {category.icon}
         </span>
-        <span
-          style={{
-            opacity: category.name === selectedCategory ? "1" : "0.8",
-            marginRight: "15px",
-          }}
-        >
-          {category.name}
-        </span>
+        <span>{category.name}</span>
       </button>
     ))}
   </Stack>

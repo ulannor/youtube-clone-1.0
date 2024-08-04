@@ -17,7 +17,6 @@ const Feed = () => {
       <Box
         sx={{
           height: { sm: "auto", md: "92vh" },
-          borderRight: "1px solid #3d3d3d",
           px: { sm: 0, md: 2 },
         }}
       >
