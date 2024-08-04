@@ -10,3 +10,8 @@ export { default as VideoCard } from "./VideoCard";
 export { default as ChannelCard } from "./ChannelCard";
 export { default as VideoAdd } from "./VideoAdd";
 export { default as PlaylistSelect } from "./PlaylistSelect";
+export { default as SupabaseTest } from "./SupabaseTest";
+export { default as LoginTest } from "./LoginTest";
+export { default as VideoAddTest } from "./VideoAddTest";
+export { default as PlaylistSelectTest } from "./PlaylistSelectTest";
+export { default as MyPlaylists } from "./MyPlaylists";
