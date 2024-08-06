@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking auth status
+    return <div>Waiting for authorization to finish...</div>; // Show a loading indicator while checking auth status
   }
 
   console.log("Current user:", user);
