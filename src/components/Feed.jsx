@@ -19,9 +19,10 @@ const Feed = () => {
       <Box
         sx={{
           px: { xs: 0, md: 1 },
-          position: { xs: "fixed", md: "relative" },
+          position: "fixed",
+          left: { xs: "auto", md: 0 },
           bottom: { xs: 0, md: "auto" },
-          width: { xs: "100%", md: 100 },
+          width: { xs: "100%", md: "90px" },
           bgcolor: { xs: "background.default", md: "transparent" },
           borderTop: { xs: 0.5, md: "none" },
           borderColor: { xs: "grey.800" },
@@ -35,21 +36,12 @@ const Feed = () => {
       <Box
         sx={{
           overflowY: "auto",
-          height: { xs: "calc(100vh - 60px)", md: "90vh" },
           px: { sm: 1 },
           justifyContent: "center",
           alignContent: "center",
+          ml: { xs: 0, md: "90px" },
         }}
       >
-        {/* <Typography
-          variant="h5"
-          fontWeight="bold"
-          m={1}
-          sx={{ color: "white" }}
-        >
-          {selectedCategory} <span style={{ color: "#F31503" }}>videos</span>
-        </Typography> */}
-
         <Videos videos={videos} />
       </Box>
     </Stack>

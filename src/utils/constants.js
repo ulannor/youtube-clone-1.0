@@ -9,26 +9,28 @@ import SubscriptionsFilledIcon from "@mui/icons-material/Subscriptions";
 
 export const logo = "/logo192.png";
 
+const iconFontSize = 24; 
+
 export const categories = [
   {
     name: "All",
-    icon: <HomeIcon sx={{ fontSize: 30 }} />,
-    filledIcon: <HomeFilledIcon sx={{ fontSize: 30 }} />,
+    icon: <HomeIcon sx={{ fontSize: iconFontSize }} />,
+    filledIcon: <HomeFilledIcon sx={{ fontSize: iconFontSize }} />,
   },
   {
     name: "Session",
-    icon: <PlayCircleOutlinedIcon sx={{ fontSize: 30 }} />,
-    filledIcon: <PlayCircleFilledIcon sx={{ fontSize: 30 }} />,
+    icon: <PlayCircleOutlinedIcon sx={{ fontSize: iconFontSize }} />,
+    filledIcon: <PlayCircleFilledIcon sx={{ fontSize: iconFontSize }} />,
   },
   {
     name: "My Feed",
-    icon: <VideoLibraryOutlinedIcon sx={{ fontSize: 30 }} />,
-    filledIcon: <VideoLibraryFilledIcon sx={{ fontSize: 30 }} />,
+    icon: <VideoLibraryOutlinedIcon sx={{ fontSize: iconFontSize }} />,
+    filledIcon: <VideoLibraryFilledIcon sx={{ fontSize: iconFontSize }} />,
   },
   {
     name: "Playlists",
-    icon: <SubscriptionsOutlinedIcon sx={{ fontSize: 30 }} />,
-    filledIcon: <SubscriptionsFilledIcon sx={{ fontSize: 30 }} />,
+    icon: <SubscriptionsOutlinedIcon sx={{ fontSize: iconFontSize }} />,
+    filledIcon: <SubscriptionsFilledIcon sx={{ fontSize: iconFontSize }} />,
   },
 ];
 

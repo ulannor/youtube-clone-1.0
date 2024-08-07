@@ -5,10 +5,8 @@ const Sidebar = ({ selectedCategory, setSelectedCategory }) => (
   <Stack
     direction="row"
     sx={{
-      overflowY: "auto",
-      height: { xs: "auto", md: "95%" },
       flexDirection: { md: "column" },
-      justifyContent: { xs: "space-evenly", md: "start" },
+      justifyContent: { xs: "space-around", md: "start" },
     }}
   >
     {categories.map((category) => (
@@ -19,20 +17,23 @@ const Sidebar = ({ selectedCategory, setSelectedCategory }) => (
           // background: category.name === selectedCategory && "#7373731f",
           color: "white",
           flexDirection: "column", // Stacks content vertically
+          width: "100%",
         }}
         key={category.name}
       >
         <span
           style={{
             color: "white",
-            marginBottom: 10,
+            alignContent: "center",
           }}
         >
           {category.name === selectedCategory
             ? category.filledIcon
             : category.icon}
         </span>
-        <span>{category.name}</span>
+        <span style={{ fontWeight: "300", fontSize: "10px" }}>
+          {category.name}
+        </span>
       </button>
     ))}
   </Stack>

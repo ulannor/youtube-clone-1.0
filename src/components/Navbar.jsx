@@ -10,8 +10,9 @@ const Navbar = () => (
     alignItems="center"
     p={2}
     sx={{
-      position: "sticky",
-      background: "#000",
+      position: "fixed",
+      backgroundColor: "background.default",
+      width: "100%",
       top: "0",
       justifyContent: "space-between",
     }}

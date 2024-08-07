@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
-import { Typography, Card, CardContent, CardMedia } from "@mui/material";
+import {
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+  Paper,
+  Box,
+} from "@mui/material";
 
 import { CheckCircle } from "@mui/icons-material";
 
@@ -18,27 +25,40 @@ const VideoCard = ({
   },
 }) => {
   return (
-    <Card
+    <Box
       sx={{
-        width: { md: "280px", lg: "320px"},
+        width: "100%",
+        height: "100%",
         boxShadow: "none",
-        borderRadius: 0,
       }}
     >
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
-        <CardMedia
-          image={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
-          alt={snippet?.title}
+        <Box
+          component="img"
           sx={{
-            width: { xs: "100%"},
-            height: 180,
+            height: "100%",
+            width: "100%",
           }}
+          alt={snippet?.title}
+          src={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
+          borderRadius={1}
         />
       </Link>
-      <CardContent sx={{ backgroundColor: "#1e1e1e", height: "106px" }}>
+      <Paper elevation={0}>
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
-          <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
-            {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
+          <Typography
+            variant="subtitle1"
+            fontWeight="bold"
+            color="#FFF"
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {snippet?.title || demoVideoTitle}
           </Typography>
         </Link>
         <Link
@@ -53,8 +73,8 @@ const VideoCard = ({
             <CheckCircle sx={{ fontSize: 12, color: "gray", ml: "5px" }} />
           </Typography>
         </Link>
-      </CardContent>
-    </Card>
+      </Paper>
+    </Box>
   );
 };
 
