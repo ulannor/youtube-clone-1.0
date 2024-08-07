@@ -7,13 +7,13 @@ import VideoLibraryFilledIcon from "@mui/icons-material/VideoLibrary";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import SubscriptionsFilledIcon from "@mui/icons-material/Subscriptions";
 
-export const logo = "/logo192.png";
+const iconFontSize = 24;
 
-const iconFontSize = 24; 
+export const logo = "/youtube_logo_256.png";
 
 export const categories = [
   {
-    name: "All",
+    name: "Home",
     icon: <HomeIcon sx={{ fontSize: iconFontSize }} />,
     filledIcon: <HomeFilledIcon sx={{ fontSize: iconFontSize }} />,
   },
