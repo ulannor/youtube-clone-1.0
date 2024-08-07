@@ -4,7 +4,11 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow: auto;
-  padding-top: 40px;
+  padding-top: 0;
+}
+
+body {
+  padding-top: 55px;
 }
 
 a {

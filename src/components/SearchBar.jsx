@@ -1,48 +1,60 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Paper, IconButton } from "@mui/material";
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 
-import { Search } from "@mui/icons-material";
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  // maxWidth: "80%",
+  // [theme.breakpoints.down("sm")]: {
+  //   marginLeft: theme.spacing(1),
+  //   width: "80%",
+  // },
+}));
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
 
-  const navigate = useNavigate();
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  // width: "100%",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    // [theme.breakpoints.up("md")]: {
+    //   width: "40ch",
+    //   "&:focus": {
+    //     width: "100ch",
+    //   },
+    // },
+  },
+}));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if(searchTerm) {
-      navigate(`/search/${searchTerm}`);
-
-      setSearchTerm('');
-    }
-  };
-
+export default function SearchAppBar() {
   return (
-    <Paper
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{
-        borderRadius: 20,
-        border: "1px solid #e3e3e3",
-        pl: 2,
-        boxShadow: "none",
-        mr: { sm: 5 },
-        backgroundColor: "#fcfcfc",
-      }}
-    >
-      <input
-        className="search-bar"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+    <Search>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ "aria-label": "search" }}
       />
-      <IconButton type="submit" sx={{ p: 1, color: "red" }}>
-        <Search />
-      </IconButton>
-    </Paper>
+    </Search>
   );
-};
-
-export default SearchBar;
+}
