@@ -22,7 +22,7 @@ const generatePlaceholderVideos = (count) => {
 };
 
 const Videos = ({ videos = [], direction }) => {
-  const placeholderVideos = generatePlaceholderVideos(200);
+  const placeholderVideos = generatePlaceholderVideos(10);
 
   // const videoData = videos.length > 0 ? videos : placeholderVideos;
   const videoData = placeholderVideos;

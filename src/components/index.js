@@ -12,3 +12,4 @@ export { default as LoginTest } from "./LoginTest";
 export { default as VideoAddTest } from "./VideoAddTest";
 export { default as PlaylistSelectTest } from "./PlaylistSelectTest";
 export { default as Playlists } from "./Playlists";
+export { default as SearchBar2 } from "./SearchBar2";

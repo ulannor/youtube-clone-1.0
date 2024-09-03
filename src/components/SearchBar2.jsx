@@ -2,6 +2,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -12,24 +13,12 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: 0,
-
   [theme.breakpoints.down("sm")]: {
     backgroundColor: alpha(theme.palette.common.white, 0),
     "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.1),
+      backgroundColor: alpha(theme.palette.common.white, 0),
     },
   },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -37,22 +26,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `1em`, // vertical padding + font size from searchIcon
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ onFocus, onBlur, onBack, isFocused, onClick }) {
   return (
     <Search>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
+      {isFocused && (
+        <IconButton onClick={onBack} aria-label="back" sx={{ pr: "0" }}>
+          <ArrowBackIcon />
+        </IconButton>
+      )}
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        sx={{ p: "0" }}
       />
-      <IconButton disableRipple aria-label="search">
+      <IconButton disableRipple aria-label="search" sx={{ pr: "12px" }} onClick={onClick}>
         <SearchIcon />
       </IconButton>
     </Search>
